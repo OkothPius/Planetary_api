@@ -1,5 +1,6 @@
 click==8.0.3
 Flask==2.0.2
+Flask-JWT-Extended==4.3.1
 flask-marshmallow==0.14.0
 Flask-SQLAlchemy==2.5.1
 greenlet==1.1.2
@@ -7,6 +8,7 @@ itsdangerous==2.0.1
 Jinja2==3.0.3
 MarkupSafe==2.0.1
 marshmallow==3.14.1
+PyJWT==2.3.0
 six==1.16.0
 SQLAlchemy==1.4.31
 Werkzeug==2.0.2
