@@ -3,10 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Float
 from flask import Flask, jsonify, request
 
+# Configurations
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'planets.db')
 
+db = SQLAlchemy(app)
+
+
+# Routes
 @app.route('/')
 def hello_world():
     return 'Hello World!'
@@ -38,6 +43,27 @@ def url_variables(name: str, age: int):
         return jsonify(message='Sorry ' + name + ', youre not old enough!'), 401
     return jsonify(message='Youre are welcome ' + name)
 
+
+# Database Models
+class User(db.Model):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String)
+    last_name = Column(String)
+    email = Column(String)
+    password = Column(String)
+
+
+class Planet(db.Model):
+    __tablename__ = 'planets'
+    planet_id = Column(Integer, primary_key=True)
+    planet_name = Column(String)
+    planet_type = Column(String)
+    home_star = Column(String)
+    mass = Column(Float)
+    radius = Column(Float)
+    distance = Column(Float)
+    
 
 if __name__ == '__main__':
     app.run()
